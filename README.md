@@ -1,6 +1,8 @@
 # simple movie app 
 Discover Movies
 
+<img src="preview.png" alt="image" />
+
 ### Requirements
 - [Node](https://nodejs.org/) >= 10.15.3
 - [npm](https://npmjs.com) >= 6.4.1
