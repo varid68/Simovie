@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 import {
-  LIST_ITEM_BASE, SCREEN_WIDTH, YELLOW, DEEPBLACK, DEEP,
-  WHITE, TEXT_SMALL
+  SCREEN_WIDTH, YELLOW, DEEPBLACK, DEEP, WHITE, TEXT_SMALL
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -9,14 +8,16 @@ export default StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_WIDTH,
     borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20
+    borderBottomRightRadius: 20,
+    zIndex: 98
   },
   arrowBackIcon: {
     position: 'absolute',
     top: 45,
     opacity: .8,
     height: 50,
-    width: 50
+    width: 50,
+    zIndex: 99
   },
   contentWrap: {
     flex: 1,
@@ -56,5 +57,27 @@ export default StyleSheet.create({
     marginTop: 5,
     color: YELLOW,
     fontSize: 18
+  },
+  overview: {
+    color: GRAY,
+    marginTop: 15,
+    marginBottom: 40,
+    lineHeight: 25
+  },
+
+
+  // DESC MOVIE
+  studioWrap: {
+    flexDirection: 'row',
+    marginBottom: 8
+  },
+  studio: {
+    flex: .3,
+    color: WHITE
+  },
+  studioVal: {
+    flex: 1,
+    color: GRAY,
+    lineHeight: 20
   },
 })

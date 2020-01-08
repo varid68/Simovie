@@ -49,3 +49,15 @@ export function getDetailMovie(id) {
     }
   }
 }
+
+// GET CAST
+export function getCastMovie(id) {
+  return async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${TMDB_API_KEY}&language=en-US`, { headers: null })
+      return res.data
+    } catch (err) {
+      if (err.response) return err.response.data
+    }
+  }
+}
