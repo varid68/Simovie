@@ -5,11 +5,12 @@ import * as actions from '../../../redux/actions/home'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import Spinner from '../../presesentationals/Spinner'
 import {
-  SCREEN_WIDTH, DEEP, ITEMS_CENTER, TEXT_SMALL_RED,
-  OPACITY_3, WHITE, TEXT_LARGER_BOLD
+  ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE, LIST_ITEM_BASE, GRAY
 } from '../../../configs/styles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import styles from './DetailStyles'
+import moment from 'moment'
 
 export default function index(props) {
   const dispatch = useDispatch()
@@ -56,7 +57,7 @@ export default function index(props) {
             {size.width > 1 &&
               <View style={{ position: 'relative', zIndex: 99 }}>
                 <Image
-                  style={{ width: SCREEN_WIDTH, height: SCREEN_WIDTH }}
+                  style={styles.imgPoster}
                   source={{ uri: `${TMDB_IMG_URL}/w185${detail.poster_path}` }} />
                 <TouchableOpacity
                   style={[styles.arrowBackIcon, { left: 20 }]}
@@ -77,16 +78,38 @@ export default function index(props) {
               </View>
             }
 
-            <View style={{
-              flex: 1,
-              backgroundColor: DEEP,
-              paddingHorizontal: 15
-            }}>
+            <View style={styles.contentWrap}>
               <View style={styles.titleMovies}>
-                <Text style={{ ...TEXT_LARGER_BOLD, color: WHITE }}>Aquaman</Text>
+                <Text style={styles.titleText}>{detail.title}</Text>
                 <Image
-                  style={{ height: 32 }}
+                  style={styles.img}
                   source={require('../../../assets/images/4k-fullhd.png')} />
+              </View>
+
+              <View style={LIST_ITEM_BASE}>
+                <View style={styles.watchNow}>
+                  <Text style={styles.watchNowText}>WATCH NOW</Text>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  {[1, 2, 3, 4, 5].map(item => (
+                    <MaterialIcon key={item} name='star' style={[styles.starIcon, { opacity: .2 }]} />
+                  ))}
+                </View>
+              </View>
+
+              <Text style={{ color: GRAY, marginVertical: 15, lineHeight: 25 }}>{detail.overview}</Text>
+
+              <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+                <Text style={{ flex: .3, color: WHITE }}>Studio</Text>
+                <Text style={{ flex: 1, color: GRAY, lineHeight: 20 }}>{detail.production_companies.map(e => e.name).join(', ')}</Text>
+              </View>
+              <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+                <Text style={{ flex: .3, color: WHITE }}>Genre</Text>
+                <Text style={{ flex: 1, color: GRAY, lineHeight: 20 }}>{detail.genres.map(e => e.name).join(', ')}</Text>
+              </View>
+              <View style={{ flexDirection: 'row', marginBottom: 8 }}>
+                <Text style={{ flex: .3, color: WHITE }}>Release</Text>
+                <Text style={{ flex: 1, color: GRAY }}>{moment(detail.release_date).format('DD MMMM YYYY')}</Text>
               </View>
             </View>
           </ScrollView>

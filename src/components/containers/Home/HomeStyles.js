@@ -69,7 +69,6 @@ export default StyleSheet.create({
   starIcon: {
     marginTop: 5,
     color: YELLOW,
-    fontSize: 18,
-    // opacity: .2
+    fontSize: 18
   }
 })
