@@ -47,15 +47,14 @@ export const GRAY_DARK_ALT    = '#8c8c8c'
 export const MERCURY          = '#e3e3e3'
 export const TRANSPARENT      = 'transparent'
 
+export const BLUE             = '#5ca0d3'
+export const YELLOW           = '#fcd307'
+export const DEEP             = '#2c3848'
+export const DEEPBLACK        = '#5b616b'
 export const RED              = '#d3211f'
-export const REDTHUNDER       = '#B11D1B'
-export const RED_TRANSPARENT  = '#d3211f33'
-export const MUSTARD          = '#f5a623'
 export const GREEN            = '#4caf50'
-export const MAROON           = '#720d0d'
-export const STEELBLUE        = '#1965b6'
-export const DODGERBLUE       = '#2196F3'
-export const PURPLE           = '#7b28a7'
+
+
 
 // Button Opacity
 export const ACTIVE_OPACITY = 0.7

@@ -4,7 +4,7 @@ import NavigationService from '../navigations/NavigationService'
 
 const SplashScreen = () => {
   useEffect(() => {
-    NavigationService.reset('SuratScreen')
+    NavigationService.reset('HomeScreen')
   }, [])
 
   return (

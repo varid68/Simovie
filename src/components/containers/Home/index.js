@@ -1,10 +1,23 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import HomeContextContainer from './HomeContext'
+import Header from './Header'
+import Fragment from './Fragment'
+import styles from './HomeStyles'
 
-export default function index() {
+function index() {
   return (
-    <View>
-      <Text>HALO</Text>
-    </View>
+    <HomeContextContainer>
+      <Header />
+      <View style={styles.container}>
+        <Fragment />
+      </View>
+    </HomeContextContainer>
   )
 }
+
+index.navigationOptions = {
+  header: null
+}
+
+export default index

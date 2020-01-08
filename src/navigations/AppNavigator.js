@@ -5,20 +5,13 @@ import {
 } from '../configs/styles'
 
 import SplashPage from '../components/SplashScreen'
-import SuratPage from '../components/containers/Surat/List'
-import SuratDetailPage from '../components/containers/Surat/Detail'
-import SuratAddPage from '../components/containers/Surat/Create'
-import SuratEditPage from '../components/containers/Surat/Update'
-
 import HomePage from '../components/containers/Home'
+import DetailPage from '../components/containers/Detail'
 
 const AppNavigator = createStackNavigator({
   SplashScreen: { screen: SplashPage },
-  SuratScreen: { screen: SuratPage },
-  SuratDetailScreen: { screen: SuratDetailPage },
-  SuratAddScreen: { screen: SuratAddPage },
-  SuratEditScreen: { screen: SuratEditPage },
-  HomeScreen: { screen: HomePage }
+  HomeScreen: { screen: HomePage },
+  DetailScreen: { screen: DetailPage }
 }, {
   initialRouteName: 'SplashScreen',
   defaultNavigationOptions: {
