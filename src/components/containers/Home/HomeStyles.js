@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import {
   BLUE, SCREEN_HEIGHT, ITEMS_CENTER, WHITE, SCREEN_WIDTH,
-  ALIGNING_ITEM_CENTER, DEEP, LIST_ITEM_BASE, YELLOW
+  ALIGNING_ITEM_CENTER, DEEP, LIST_ITEM_BASE, YELLOW, TEXT_SMALL
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -65,6 +65,11 @@ export default StyleSheet.create({
     height: 184,
     marginVertical: 15,
     borderRadius: 10
+  },
+  title: {
+    ...TEXT_SMALL,
+    color: WHITE,
+    height: 35
   },
   starIcon: {
     marginTop: 5,
