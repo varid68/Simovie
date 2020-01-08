@@ -20,8 +20,10 @@ $ yarn install or npm install
 Create `.env` file in your root directory and add the following
 
 ```sh
-TMDB_URL=https://api.themoviedb.org/3
+TMDB_API_KEY=your_tmdb_api_key_here
 
 ```
+
+Get api key - [TMDB](https://www.themoviedb.org/)
 
 Thanks to Mickael Guillaume for his awesome design [link uplabs](https://www.uplabs.com/posts/movies-e0f9c1ea-a644-4666-857b-10933c4089ca) and TMDb for Open API Movie
