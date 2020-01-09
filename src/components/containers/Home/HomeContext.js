@@ -8,16 +8,20 @@ export const HomeContext = createContext()
 export default function HomeContextPage(props) {
   const dispatch = useDispatch()
 
-  const [movies, setMovies] = useState({
-    popular: [],
-    topRated: [],
-    nowPlaying: []
-  })
+  /* const [movies, setMovies] = useState({
+   popular: [],
+   topRated: [],
+   nowPlaying: []
+ }) */
+
+  const [popular, setPopular] = useState([])
+  const [topRated, setTopRated] = useState([])
+  const [nowPlaying, setNowPlaying] = useState([])
 
   useEffect(() => {
     dispatch(actions.getPopularMovies()).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        setMovies({ ...movies.popular, popular: res.results })
+        setPopular(res.results)
       } else {
         showToast(res.status_message)
       }
@@ -25,7 +29,7 @@ export default function HomeContextPage(props) {
 
     dispatch(actions.getTopRatedMovies()).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        setMovies({ ...movies.topRated, topRated: res.results })
+        setTopRated(res.results)
       } else {
         showToast(res.status_message)
       }
@@ -33,16 +37,19 @@ export default function HomeContextPage(props) {
 
     dispatch(actions.getNowPlayingMovies()).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        setMovies({ ...movies.nowPlaying, nowPlaying: res.results })
+        setNowPlaying(res.results)
       } else {
         showToast(res.status_message)
       }
     })
   }, [])
 
+
   return (
     <HomeContext.Provider value={{
-      movies
+      popular,
+      topRated,
+      nowPlaying
     }}>
       {props.children}
     </HomeContext.Provider>
