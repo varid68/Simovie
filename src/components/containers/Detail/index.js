@@ -5,7 +5,7 @@ import * as actions from '../../../redux/actions/home'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import Spinner from '../../presesentationals/Spinner'
 import {
-  ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE, LIST_ITEM_BASE, RED
+  ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE, LIST_ITEM_BASE, RED, DEEP
 } from '../../../configs/styles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
@@ -75,7 +75,7 @@ export default function index(props) {
                 style={{ fontSize: 30 }} />
             </TouchableOpacity>
 
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ backgroundColor: DEEP }}>
               <Image
                 style={styles.imgPoster}
                 source={{ uri: `${TMDB_IMG_URL}/w185${detail.poster_path}` }} />

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import {
-  SCREEN_WIDTH, YELLOW, DEEPBLACK, DEEP, WHITE, TEXT_SMALL
+  SCREEN_WIDTH, YELLOW, DEEPBLACK, WHITE, TEXT_SMALL, GRAY
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -20,8 +20,6 @@ export default StyleSheet.create({
     zIndex: 99
   },
   contentWrap: {
-    flex: 1,
-    backgroundColor: DEEP,
     paddingHorizontal: 25,
     marginTop: -15
   },
