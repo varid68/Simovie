@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../../redux/actions/home'
 import { showToast } from '../../../services/common'
+import NavigationService from '../../../navigations/NavigationService'
 
 export const HomeContext = createContext()
 
@@ -17,6 +18,7 @@ export default function HomeContextPage(props) {
   const [popular, setPopular] = useState([])
   const [topRated, setTopRated] = useState([])
   const [nowPlaying, setNowPlaying] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     dispatch(actions.getPopularMovies()).then(res => {
@@ -44,12 +46,26 @@ export default function HomeContextPage(props) {
     })
   }, [])
 
+  const setValueSearch = (value) => setSearch(value)
+
+  const onSearch = () => {
+    if (search.length < 1) {
+      showToast('tidak boleh kosong')
+      return false
+    }
+    setSearch('')
+    NavigationService.navigate('SearchScreen', { movie: search })
+  }
+
 
   return (
     <HomeContext.Provider value={{
       popular,
       topRated,
-      nowPlaying
+      nowPlaying,
+      search,
+      setValueSearch,
+      onSearch
     }}>
       {props.children}
     </HomeContext.Provider>

@@ -61,3 +61,15 @@ export function getCastMovie(id) {
     }
   }
 }
+
+// SEARCH
+export function getSearchMovie(value) {
+  return async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${value}`, { headers: null })
+      return res.data
+    } catch (err) {
+      if (err.response) return err.response.data
+    }
+  }
+}

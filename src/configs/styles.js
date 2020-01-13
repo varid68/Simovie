@@ -53,6 +53,8 @@ export const DEEP             = '#2c3848'
 export const DEEPBLACK        = '#5b616b'
 export const RED              = '#d3211f'
 export const GREEN            = '#4caf50'
+export const EBONY            = '#12162b'
+export const BIGSTONE         = '#19223c'
 
 
 

@@ -6,6 +6,7 @@ import styles from './HomeStyles'
 import { BLUE } from '../../../configs/styles'
 import { HomeContext } from './HomeContext'
 
+
 export default function Header() {
   const value = useContext(HomeContext)
 
@@ -19,6 +20,10 @@ export default function Header() {
             name='search'
             style={styles.iconSearch} />
           <TextInput
+            value={value.search}
+            onChangeText={text => value.setValueSearch(text)}
+            onSubmitEditing={value.onSearch}
+            returnKeyType='search'
             placeholder='Search'
             style={styles.searchInput} />
         </View>
