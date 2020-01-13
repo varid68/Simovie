@@ -1,7 +1,18 @@
 # simple movie app 
 Discover Movies
 
-<img src="preview.png" alt="image" />
+<table>
+  <thead>
+    <th>Home</th>
+    <th>Detail</th>
+    <th>Search list</th>
+  </thead>
+  <tbody>
+    <td><img src='./home.png' /></td>
+    <td><img src='./detail.png' /></td>
+    <td><img src='./serach.png' /></td>
+  </tbody>
+</table>
 
 ### Requirements
 - [Node](https://nodejs.org/) >= 10.15.3
