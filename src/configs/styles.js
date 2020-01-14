@@ -49,6 +49,7 @@ export const TRANSPARENT      = 'transparent'
 
 export const BLUE             = '#5ca0d3'
 export const YELLOW           = '#fcd307'
+export const ORANGE           = '#FFB74D'
 export const DEEP             = '#2c3848'
 export const DEEPBLACK        = '#5b616b'
 export const RED              = '#d3211f'
