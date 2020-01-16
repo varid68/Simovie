@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import styles from './HomeStyles'
 import { WHITE, TEXT_SMALL, GRAY } from '../../../configs/styles'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import NavigationService from '../../../navigations/NavigationService'
+import { PlaceholderLoading } from '../../presesentationals/SkeleteonLoading'
+import { HomeContext } from './HomeContext'
 
 
 export default function SliderMovie(props) {
+  const value = useContext(HomeContext)
+
   const keyExtractor = (item) => item.id.toString()
 
   const navigate = (id) => NavigationService.navigate('DetailScreen', { id })
@@ -44,12 +48,17 @@ export default function SliderMovie(props) {
           <Text style={{ ...TEXT_SMALL, color: GRAY }}>See all</Text>
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={props.list}
-        keyExtractor={keyExtractor}
-        renderItem={({ item }) => renderItem(item)}
-        showsVerticalScrollIndicator={false}
-        horizontal />
+      {
+        value.loading ?
+          <PlaceholderLoading />
+          :
+          <FlatList
+            data={props.list}
+            keyExtractor={keyExtractor}
+            renderItem={({ item }) => renderItem(item)}
+            showsVerticalScrollIndicator={false}
+            horizontal />
+      }
     </View>
   )
 }

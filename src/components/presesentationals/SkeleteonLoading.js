@@ -1,31 +1,29 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Placeholder, PlaceholderLine, Fade } from 'rn-placeholder'
-import { GRAY } from '../../configs/styles'
+import { GRAY, WHITE } from '../../configs/styles'
 
 
 export function PlaceholderLoading() {
-  return [1].map((item, index) => (
-    <View style={{ flex: 1, padding: 0 }} key={index}>
-      <Placeholder Animation={Fade}>
-        <View
-          key={index}
-          style={styles.cardContainer}>
-          <View style={{ flexDirection: 'column', flex: 1 }}>
-            <PlaceholderLine color={GRAY} width={100} height={184} style={{ borderRadius: 10 }} />
-          </View>
-
-          <View style={{ flexDirection: 'column', flex: 1, marginHorizontal: 15 }}>
-            <PlaceholderLine color={GRAY} width={100} height={184} style={{ borderRadius: 10 }} />
-          </View>
-
-          <View style={{ flexDirection: 'column', flex: 1 }}>
-            <PlaceholderLine color={GRAY} width={100} height={184} style={{ borderRadius: 10 }} />
-          </View>
-        </View>
-      </Placeholder>
+  return (
+    <View style={{ flexDirection: 'row', marginTop: 15 }}>
+      <View style={{ flex: 1 }}>
+        <Placeholder Animation={Fade}>
+          <PlaceholderLine height={170} style={{ marginBottom: 0, borderRadius: 5 }} />
+        </Placeholder>
+      </View>
+      <View style={{ flex: 1, marginHorizontal: 10 }}>
+        <Placeholder Animation={Fade}>
+          <PlaceholderLine height={170} style={{ marginBottom: 0, borderRadius: 5 }} />
+        </Placeholder>
+      </View>
+      <View style={{ flex: 1 }}>
+        <Placeholder Animation={Fade}>
+          <PlaceholderLine height={170} style={{ marginBottom: 0, borderRadius: 5 }} />
+        </Placeholder>
+      </View>
     </View>
-  ))
+  )
 }
 
 export function PlaceholderLoadingDetail() {
@@ -50,21 +48,24 @@ export function PlaceholderLoadingDetail() {
 export default { PlaceholderLoading, PlaceholderLoadingDetail }
 
 const styles = StyleSheet.create({
-  cardContainer: {
-    flexDirection: 'row',
-    // width: '99%',
+  card: {
+    color: WHITE,
     flex: 1,
+    marginBottom: 0,
+    borderRadius: 5
+  },
+  cardContainer: {
+    // flexDirection: 'row',
+    // width: '99%',
     marginTop: 1,
     marginLeft: 1,
-    // padding: 10,
+    padding: 10,
     borderRadius: 4,
     marginBottom: 5
   },
   mediaPlaceholder: {
-    width: 135,
-    height: 184,
-    // width: 95,
-    // height: 84,
+    width: 95,
+    height: 84,
     borderRadius: 4
   },
 })

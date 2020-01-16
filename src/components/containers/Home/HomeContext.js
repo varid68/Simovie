@@ -19,6 +19,7 @@ export default function HomeContextPage(props) {
   const [topRated, setTopRated] = useState([])
   const [nowPlaying, setNowPlaying] = useState([])
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     dispatch(actions.getPopularMovies()).then(res => {
@@ -46,6 +47,12 @@ export default function HomeContextPage(props) {
     })
   }, [])
 
+  useEffect(() => {
+    if (popular.length > 0 && topRated.length > 0 && nowPlaying.length > 0) {
+      setLoading(false)
+    }
+  }, [popular, topRated, nowPlaying])
+
   const setValueSearch = (value) => setSearch(value)
 
   const onSearch = () => {
@@ -65,7 +72,8 @@ export default function HomeContextPage(props) {
       nowPlaying,
       search,
       setValueSearch,
-      onSearch
+      onSearch,
+      loading
     }}>
       {props.children}
     </HomeContext.Provider>
