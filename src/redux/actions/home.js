@@ -73,3 +73,15 @@ export function getSearchMovie(value) {
     }
   }
 }
+
+// GET LINK VIDEO
+export function getVideoLink(value) {
+  return async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/movie/${value}/videos?api_key=${TMDB_API_KEY}&language=en-US`, { headers: null })
+      return res.data
+    } catch (err) {
+      if (err.response) return err.response.data
+    }
+  }
+}

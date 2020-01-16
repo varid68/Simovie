@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import { View, Text, StatusBar, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, StatusBar, Image, ScrollView, TouchableOpacity, Linking } from 'react-native'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../../redux/actions/home'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
@@ -20,6 +20,7 @@ export default function index(props) {
   const [cast, setCast] = useState([])
   const [loading, setLoading] = useState(true)
   const [liked, setLiked] = useState(false)
+  const [link, setLink] = useState('')
 
   useEffect(() => {
     const { id } = props.navigation.state.params
@@ -39,10 +40,22 @@ export default function index(props) {
         showToast(res.status_message)
       }
     })
+
+    dispatch(actions.getVideoLink(id)).then(res => {
+      if (!res.hasOwnProperty('status_code')) {
+        setLink(res.results[0].key)
+      } else {
+        showToast(res.status_message)
+      }
+    })
   }, [])
 
   const toggleLiked = () => setLiked(!liked)
 
+  const openYoutube = () => {
+    const url = `https://www.youtube.com/watch?v=${link}`
+    Linking.openURL(url).catch()
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -89,7 +102,9 @@ export default function index(props) {
                 </View>
 
                 <View style={LIST_ITEM_BASE}>
-                  <TouchableOpacity style={styles.watchNow}>
+                  <TouchableOpacity
+                    onPress={openYoutube}
+                    style={styles.watchNow}>
                     <Text style={styles.watchNowText}>WATCH NOW</Text>
                   </TouchableOpacity>
                   <View style={{ flexDirection: 'row' }}>
