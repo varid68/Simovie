@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import {
-  YELLOW, EBONY, BIGSTONE, LIST_ITEM_BASE, ALIGNING_ITEM_CENTER, WHITE
+  YELLOW, EBONY, BIGSTONE, LIST_ITEM_BASE, ALIGNING_ITEM_CENTER, WHITE, ITEMS_CENTER, GRAY
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -23,6 +23,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   searchInput: {
+    paddingLeft: 10,
     backgroundColor: WHITE,
     flex: 1,
     borderTopLeftRadius: 5,
@@ -67,5 +68,27 @@ export default StyleSheet.create({
     marginTop: 5,
     color: YELLOW,
     fontSize: 20
+  },
+  notFoundWrap: {
+    ...ITEMS_CENTER,
+    flex: 1,
+    flexDirection: 'column'
+  },
+  imgNotFound: {
+    width: 200,
+    height: 300,
+    resizeMode: 'contain'
+  },
+  noResult: {
+    color: WHITE,
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+  subNoResult: {
+    color: GRAY,
+    fontSize: 16,
+    textAlign: 'center',
+    lineHeight: 25
   }
 })

@@ -8,9 +8,10 @@ import moment from 'moment'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import {
   WHITE, TEXT_MEDIUM, GRAY, TEXT_SMALL, EBONY, BLACK,
-  LIST_ITEM_BASE, ORANGE
+  LIST_ITEM_BASE, ORANGE, RED, ITEMS_CENTER
 } from '../../../configs/styles'
 import NavigationService from '../../../navigations/NavigationService'
+import { Spinner } from 'native-base'
 
 
 export default function index(props) {
@@ -18,9 +19,10 @@ export default function index(props) {
 
   const [list, setList] = useState([])
   const [search, setSearch] = useState({
-    value: '',
+    value: [],
     isSearching: false
   })
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const { movie } = props.navigation.state.params
@@ -28,10 +30,11 @@ export default function index(props) {
   }, [])
 
   const getMovie = (movie) => {
+    setLoading(true)
     disptach(actions.getSearchMovie(movie)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        console.log(res)
         setList(res.results)
+        setLoading(false)
       } else {
         showToast(res.status_message)
       }
@@ -119,11 +122,27 @@ export default function index(props) {
           </View>
       }
 
-      <FlatList
-        data={list}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => renderItem(item)}
-        showsVerticalScrollIndicator={false} />
+      {
+        list.length < 1 && !loading ?
+          <View style={styles.notFoundWrap}>
+            <Image
+              style={styles.imgNotFound}
+              source={require('../../../assets/images/not_found2.png')} />
+            <Text style={styles.noResult}>No result found</Text>
+            <Text style={styles.subNoResult}>Try different keywords or remove search filters</Text>
+          </View>
+          : loading ?
+            <View style={{ ...ITEMS_CENTER }}>
+              <Spinner color={RED} />
+              <Text style={{ color: WHITE }}>Please wait, loading movie</Text>
+            </View> :
+            <FlatList
+              data={list}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => renderItem(item)}
+              showsVerticalScrollIndicator={false} />
+      }
+
     </View>
   )
 }
