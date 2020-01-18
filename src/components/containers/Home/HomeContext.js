@@ -1,19 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import * as actions from '../../../redux/actions/home'
+import { get_api } from '../../../actions'
 import { showToast } from '../../../services/common'
 import NavigationService from '../../../navigations/NavigationService'
+import { TMDB_API_KEY } from "../../../configs/apiConfig"
 
 export const HomeContext = createContext()
 
 export default function HomeContextPage(props) {
-  const dispatch = useDispatch()
-
-  /* const [movies, setMovies] = useState({
-   popular: [],
-   topRated: [],
-   nowPlaying: []
- }) */
 
   const [popular, setPopular] = useState([])
   const [topRated, setTopRated] = useState([])
@@ -22,36 +15,23 @@ export default function HomeContextPage(props) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(actions.getPopularMovies()).then(res => {
-      if (!res.hasOwnProperty('status_code')) {
-        setPopular(res.results)
-      } else {
-        showToast(res.status_message)
-      }
+
+    get_api(`/movie/popular?api_key=${TMDB_API_KEY}`).then(res => {
+      setPopular(res.results)
+    })
+      .catch(e => {
+        console.log(e)
+      })
+
+    get_api(`/movie/top_rated?api_key=${TMDB_API_KEY}`).then(res => {
+      setTopRated(res.results)
     })
 
-    dispatch(actions.getTopRatedMovies()).then(res => {
-      if (!res.hasOwnProperty('status_code')) {
-        setTopRated(res.results)
-      } else {
-        showToast(res.status_message)
-      }
+    get_api(`/movie/now_playing?api_key=${TMDB_API_KEY}`).then(res => {
+      setTopRated(res.results)
     })
 
-    dispatch(actions.getNowPlayingMovies()).then(res => {
-      if (!res.hasOwnProperty('status_code')) {
-        setNowPlaying(res.results)
-      } else {
-        showToast(res.status_message)
-      }
-    })
   }, [])
-
-  useEffect(() => {
-    if (popular.length > 0 && topRated.length > 0 && nowPlaying.length > 0) {
-      setLoading(false)
-    }
-  }, [popular, topRated, nowPlaying])
 
   const setValueSearch = (value) => setSearch(value)
 
@@ -73,7 +53,8 @@ export default function HomeContextPage(props) {
       search,
       setValueSearch,
       onSearch,
-      loading
+      loading,
+      setLoading
     }}>
       {props.children}
     </HomeContext.Provider>

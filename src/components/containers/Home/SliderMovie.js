@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import styles from './HomeStyles'
 import { WHITE, TEXT_SMALL, GRAY } from '../../../configs/styles'
@@ -12,11 +12,18 @@ import { HomeContext } from './HomeContext'
 export default function SliderMovie(props) {
   const value = useContext(HomeContext)
 
+  useEffect(() => {
+    if (value.popular.length > 0 && value.topRated.length > 0 && value.nowPlaying.length > 0) {
+      value.setLoading(false)
+    }
+  }, [])
+
   const keyExtractor = (item) => item.id.toString()
 
   const navigate = (id) => NavigationService.navigate('DetailScreen', { id })
 
   const renderItem = (item) => {
+
     const result = Math.round(item.vote_average / 2)
 
     return (
