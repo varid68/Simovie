@@ -29,3 +29,11 @@ export function capitalize(text) {
 
   return result
 }
+
+// 
+export function calculateMinutes(number) {
+  let hour = Math.floor(number / 60)
+  let minutes = (number - (hour * 60))
+
+  return `${hour} hour ${minutes} minutes`
+}
