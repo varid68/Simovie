@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native'
 import {
-  SCREEN_WIDTH, YELLOW, DEEPBLACK, WHITE, TEXT_SMALL, GRAY
+  SCREEN_WIDTH, YELLOW, DEEPBLACK, WHITE, TEXT_SMALL, GRAY,
+  GRAY_DARK, GRAY_ALT, ALIGNING_ITEM_CENTER
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
   imgPoster: {
     width: SCREEN_WIDTH,
-    height: SCREEN_WIDTH,
+    height: SCREEN_WIDTH - 100,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     zIndex: 98
@@ -21,6 +22,7 @@ export default StyleSheet.create({
   },
   contentWrap: {
     paddingHorizontal: 25,
+    marginBottom: 10,
     marginTop: -15
   },
   titleMovies: {
@@ -59,7 +61,7 @@ export default StyleSheet.create({
   overview: {
     color: GRAY,
     marginTop: 15,
-    marginBottom: 40,
+    marginBottom: 10,
     lineHeight: 25
   },
 
@@ -74,8 +76,61 @@ export default StyleSheet.create({
     color: WHITE
   },
   studioVal: {
+    ...TEXT_SMALL,
     flex: 1,
     color: GRAY,
     lineHeight: 20
   },
+  descMovieWrap: {
+    flexDirection: 'column',
+    width: 60,
+    alignItems: 'center',
+    marginRight: 15
+  },
+  imgDescMovie: {
+    width: 50,
+    height: 50,
+    borderRadius: 20,
+    marginBottom: 10
+  },
+  imgCastName: {
+    ...TEXT_SMALL,
+    color: GRAY,
+    textAlign: 'center'
+  },
+
+  // REVIEW
+  author: {
+    flex: 1,
+    marginLeft: 15,
+    color: WHITE,
+    fontWeight: 'bold'
+  },
+  reviewText: {
+    fontSize: 13,
+    color: GRAY_ALT,
+    lineHeight: 22,
+    paddingVertical: 10
+  },
+  likeWrap: {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    paddingBottom: 10,
+    marginBottom: 25,
+    borderBottomWidth: 1,
+    borderBottomColor: GRAY_DARK
+  },
+  counterLike: {
+    ...TEXT_SMALL,
+    color: WHITE
+  },
+  likeBtn: {
+    ...ALIGNING_ITEM_CENTER,
+    width: 30,
+    height: 30
+  },
+  like: {
+    color: WHITE,
+    fontSize: 20
+  }
 })
