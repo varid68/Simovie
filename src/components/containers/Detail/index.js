@@ -1,17 +1,23 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import { View, Text, StatusBar, Image, ScrollView, TouchableOpacity, Linking } from 'react-native'
+import {
+  View, Text, StatusBar, Image, ScrollView,
+  TouchableOpacity, Linking, FlatList
+} from 'react-native'
+import { Tabs, Tab } from 'native-base'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../../redux/actions/home'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import Spinner from '../../presesentationals/Spinner'
 import {
-  ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE, LIST_ITEM_BASE, RED, DEEP
+  ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE,
+  LIST_ITEM_BASE, RED, DEEP, TEXT_BASE, YELLOW, GRAY_DARK
 } from '../../../configs/styles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import styles from './DetailStyles'
-import Cast from './Cast'
 import DescriptionMovie from './DescMovie'
+import ReviewMovie from './Review'
+import Related from './Related'
 
 export default function index(props) {
   const dispatch = useDispatch()
@@ -21,6 +27,8 @@ export default function index(props) {
   const [loading, setLoading] = useState(true)
   const [liked, setLiked] = useState(false)
   const [link, setLink] = useState('')
+  const [review, setReview] = useState([])
+
 
   useEffect(() => {
     const { id } = props.navigation.state.params
@@ -44,6 +52,14 @@ export default function index(props) {
     dispatch(actions.getVideoLink(id)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
         setLink(res.results[0].key)
+      } else {
+        showToast(res.status_message)
+      }
+    })
+
+    dispatch(actions.getReviewMovie(id)).then(res => {
+      if (!res.hasOwnProperty('status_code')) {
+        setReview(res.results)
       } else {
         showToast(res.status_message)
       }
@@ -119,10 +135,49 @@ export default function index(props) {
 
                 <Text style={styles.overview}>{detail.overview}</Text>
 
-                <Cast cast={cast} />
-
-                <DescriptionMovie detail={detail} />
+                <FlatList
+                  horizontal
+                  data={cast}
+                  keyExtractor={item => item.id.toString()}
+                  showsHorizontalScrollIndicator={false}
+                  renderItem={({ item }) => (
+                    <View style={styles.descMovieWrap}>
+                      <Image
+                        style={styles.imgDescMovie}
+                        source={{ uri: `${TMDB_IMG_URL}/w185${item.profile_path}` }} />
+                      <Text numberOfLines={2} style={styles.imgCastName}>{item.name}</Text>
+                    </View>
+                  )} />
               </View>
+
+              <Tabs
+                tabBarUnderlineStyle={{ backgroundColor: YELLOW, height: 2 }}
+                tabContainerStyle={{ elevation: 0, borderBottomColor: GRAY_DARK, borderBottomWidth: 1 }}>
+                <Tab
+                  textStyle={{ color: WHITE, ...TEXT_BASE }}
+                  activeTabStyle={{ backgroundColor: DEEP }}
+                  activeTextStyle={{ color: YELLOW }}
+                  tabStyle={{ backgroundColor: DEEP }}
+                  heading="Detail">
+                  <DescriptionMovie cast={cast} detail={detail} />
+                </Tab>
+                <Tab
+                  textStyle={{ color: WHITE, ...TEXT_BASE }}
+                  activeTabStyle={{ backgroundColor: DEEP }}
+                  activeTextStyle={{ color: YELLOW }}
+                  tabStyle={{ backgroundColor: DEEP }}
+                  heading="Related">
+                  <Related />
+                </Tab>
+                <Tab
+                  textStyle={{ color: WHITE, ...TEXT_BASE }}
+                  activeTabStyle={{ backgroundColor: DEEP }}
+                  activeTextStyle={{ color: YELLOW }}
+                  tabStyle={{ backgroundColor: DEEP }}
+                  heading="Review">
+                  <ReviewMovie review={review} />
+                </Tab>
+              </Tabs>
             </ScrollView>
           </Fragment>
       }
