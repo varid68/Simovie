@@ -64,6 +64,11 @@ export default StyleSheet.create({
     marginBottom: 10,
     lineHeight: 25
   },
+  tabWrap: {
+    elevation: 0,
+    borderBottomColor: GRAY_DARK,
+    borderBottomWidth: 1
+  },
 
 
   // DESC MOVIE

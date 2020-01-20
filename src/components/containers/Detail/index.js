@@ -10,7 +10,7 @@ import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import Spinner from '../../presesentationals/Spinner'
 import {
   ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE,
-  LIST_ITEM_BASE, RED, DEEP, TEXT_BASE, YELLOW, GRAY_DARK
+  LIST_ITEM_BASE, RED, DEEP, TEXT_BASE, YELLOW
 } from '../../../configs/styles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
@@ -152,7 +152,7 @@ export default function index(props) {
 
               <Tabs
                 tabBarUnderlineStyle={{ backgroundColor: YELLOW, height: 2 }}
-                tabContainerStyle={{ elevation: 0, borderBottomColor: GRAY_DARK, borderBottomWidth: 1 }}>
+                tabContainerStyle={styles.tabWrap}>
                 <Tab
                   textStyle={{ color: WHITE, ...TEXT_BASE }}
                   activeTabStyle={{ backgroundColor: DEEP }}
