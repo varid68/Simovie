@@ -1,19 +1,45 @@
 import React, { useEffect } from 'react'
-import { View, Text, StatusBar } from 'react-native'
+import { View, Text, StatusBar, Image, StyleSheet } from 'react-native'
 import NavigationService from '../navigations/NavigationService'
+import { ITEMS_CENTER, DEEP, WHITE } from '../configs/styles'
 
 const SplashScreen = () => {
   useEffect(() => {
-    NavigationService.reset('HomeScreen')
+    setTimeout(() => {
+      NavigationService.reset('HomeScreen')
+    }, 3000)
   }, [])
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <StatusBar hidden />
-      <Text>Ini SplashScreen</Text>
+      <Image
+        style={styles.img}
+        source={require('../assets/images/splashscreen.png')} />
+      <Text style={styles.simovie}>Si movie</Text>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    ...ITEMS_CENTER,
+    backgroundColor: DEEP,
+    flex: 1
+  },
+  img: {
+    resizeMode: 'contain',
+    height: 300,
+    width: 300
+  },
+  simovie: {
+    fontFamily: 'Lobster-Regular',
+    textAlign: 'center',
+    color: WHITE,
+    fontSize: 40,
+    marginTop: 10
+  }
+})
 
 SplashScreen.navigationOptions = {
   header: null
