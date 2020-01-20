@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import {
   SCREEN_WIDTH, YELLOW, DEEPBLACK, WHITE, TEXT_SMALL, GRAY,
-  GRAY_DARK, GRAY_ALT, ALIGNING_ITEM_CENTER
+  GRAY_DARK, GRAY_ALT, ALIGNING_ITEM_CENTER, TEXT_BASE_BOLD
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -137,5 +137,10 @@ export default StyleSheet.create({
   like: {
     color: WHITE,
     fontSize: 20
+  },
+  noReview: {
+    ...TEXT_BASE_BOLD,
+    textAlign: 'center',
+    color: WHITE
   }
 })

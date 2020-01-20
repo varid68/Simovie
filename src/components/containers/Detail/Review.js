@@ -1,6 +1,6 @@
 import React, { Fragment, memo } from 'react'
 import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
-import { ALIGNING_ITEM_CENTER } from '../../../configs/styles'
+import { ALIGNING_ITEM_CENTER, OXFORD_BLUE } from '../../../configs/styles'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import styles from './DetailStyles'
 
@@ -59,12 +59,18 @@ const Review = memo((props) => {
   }
 
   return (
-    <View style={{ backgroundColor: '#313e4f', padding: 20 }}>
-      <FlatList
-        data={props.review}
-        keyExtractor={e => e.id.toString()}
-        renderItem={({ item }) => renderItem(item)}
-        showsVerticalScrollIndicator={false} />
+    <View style={{ backgroundColor: OXFORD_BLUE, padding: 20 }}>
+      {
+        props.review.length < 1 ?
+          <Text style={styles.noReview}>Belum ada review</Text>
+          :
+          <FlatList
+            data={props.review}
+            keyExtractor={e => e.id.toString()}
+            renderItem={({ item }) => renderItem(item)}
+            showsVerticalScrollIndicator={false} />
+
+      }
     </View>
   )
 })

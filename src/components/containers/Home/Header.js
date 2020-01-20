@@ -11,7 +11,7 @@ export default function Header() {
   const value = useContext(HomeContext)
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: BLUE }}>
       <StatusBar hidden={false} backgroundColor={BLUE} />
       <View style={styles.header}>
         <Text style={styles.headerText}>Hello, what do you want to watch ?</Text>

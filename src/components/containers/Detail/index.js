@@ -104,7 +104,9 @@ export default function index(props) {
                 style={{ fontSize: 30 }} />
             </TouchableOpacity>
 
-            <ScrollView style={{ backgroundColor: DEEP }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ backgroundColor: DEEP }}>
               <Image
                 style={styles.imgPoster}
                 source={{ uri: `${TMDB_IMG_URL}/w185${detail.poster_path}` }} />

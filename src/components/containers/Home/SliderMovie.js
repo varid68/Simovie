@@ -41,7 +41,7 @@ export default function SliderMovie(props) {
 
 
   return (
-    <View style={{ marginTop: 30 }}>
+    <View style={{ marginVertical: 10, paddingTop: 15 }}>
       <View style={styles.sliderTitle}>
         <Text style={{ ...TEXT_SMALL, color: WHITE }}>{props.title}</Text>
         <TouchableOpacity>

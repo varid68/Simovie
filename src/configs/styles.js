@@ -48,6 +48,7 @@ export const MERCURY          = '#e3e3e3'
 export const TRANSPARENT      = 'transparent'
 
 export const BLUE             = '#5ca0d3'
+export const OXFORD_BLUE      = '#313e4f'
 export const YELLOW           = '#fcd307'
 export const ORANGE           = '#FFB74D'
 export const DEEP             = '#2c3848'

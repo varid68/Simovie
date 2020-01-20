@@ -1,7 +1,8 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import {
   BLUE, SCREEN_HEIGHT, ITEMS_CENTER, WHITE, SCREEN_WIDTH,
-  ALIGNING_ITEM_CENTER, DEEP, LIST_ITEM_BASE, YELLOW, TEXT_SMALL
+  ALIGNING_ITEM_CENTER, DEEP, LIST_ITEM_BASE, YELLOW, TEXT_SMALL,
+  BLACK, BLACK_ALL
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -24,19 +25,19 @@ export default StyleSheet.create({
     ...ALIGNING_ITEM_CENTER,
     height: 35,
     paddingLeft: 40,
-    paddingBottom: 8,
+    paddingBottom: Platform.OS == 'ios' ? 0 : 8,
     backgroundColor: WHITE,
-    opacity: .3,
+    opacity: .7,
     borderRadius: 20,
-    width: SCREEN_WIDTH / 1.4
+    width: SCREEN_WIDTH / 1.4,
+    color: BLACK
   },
   iconSearch: {
     position: 'absolute',
     left: 10,
     top: 5,
-    color: WHITE,
-    fontSize: 25,
-    opacity: .5
+    color: BLACK_ALL,
+    fontSize: 25
   },
 
 
@@ -63,7 +64,7 @@ export default StyleSheet.create({
   itemSliderImg: {
     width: 135,
     height: 184,
-    marginVertical: 15,
+    marginVertical: 10,
     borderRadius: 10
   },
   title: {

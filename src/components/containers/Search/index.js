@@ -12,6 +12,7 @@ import {
 } from '../../../configs/styles'
 import NavigationService from '../../../navigations/NavigationService'
 import { Spinner } from 'native-base'
+import { SafeAreaView } from 'react-navigation'
 
 
 export default function index(props) {
@@ -85,7 +86,10 @@ export default function index(props) {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <SafeAreaView
+      forceInset={{ bottom: 'never' }}
+      style={styles.wrapper}>
+
       <StatusBar backgroundColor={EBONY} />
 
       {
@@ -143,7 +147,7 @@ export default function index(props) {
               showsVerticalScrollIndicator={false} />
       }
 
-    </View>
+    </SafeAreaView>
   )
 }
 
