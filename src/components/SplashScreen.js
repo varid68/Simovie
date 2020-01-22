@@ -7,12 +7,12 @@ const SplashScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       NavigationService.reset('HomeScreen')
-    }, 3000)
+    }, 2000)
   }, [])
 
   return (
     <View style={styles.wrapper}>
-      <StatusBar hidden />
+      <StatusBar hidden={false} backgroundColor={DEEP} />
       <Image
         style={styles.img}
         source={require('../assets/images/splashscreen.png')} />

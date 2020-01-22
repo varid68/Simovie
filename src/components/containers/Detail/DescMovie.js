@@ -21,7 +21,7 @@ const DescMovie = ({ detail }) => (
       <Text style={styles.studioVal}>{moment(detail.release_date).format('DD MMMM YYYY')}</Text>
     </View>
     <View style={styles.studioWrap}>
-      <Text style={styles.studio}>Release</Text>
+      <Text style={styles.studio}>Duration</Text>
       <Text style={styles.studioVal}>{calculateMinutes(detail.runtime)}</Text>
     </View>
     <View style={styles.studioWrap}>

@@ -68,7 +68,7 @@ export default function index(props) {
             <Text numberOfLines={2} style={{ color: WHITE, ...TEXT_MEDIUM }}>{item.title}</Text>
             <Text numberOfLines={2} style={{ color: GRAY, marginVertical: 5 }}>{item.overview}</Text>
             <Text style={{ color: GRAY, ...TEXT_SMALL }}>{moment(item.release_date).format('DD MMMM YYYY')}</Text>
-            <View style={LIST_ITEM_BASE}>
+            <View style={[LIST_ITEM_BASE, { alignItems: 'center' }]}>
               <View style={{ flexDirection: 'row' }}>
                 {[1, 2, 3, 4, 5].map(val => (
                   <MaterialIcon
@@ -77,7 +77,7 @@ export default function index(props) {
                     style={[styles.starIcon, { opacity: val <= result ? 1 : .2 }]} />
                 ))}
               </View>
-              <Text style={{ color: ORANGE }}>{item.vote_average}/10</Text>
+              <Text style={{ color: ORANGE, ...TEXT_SMALL }}>{item.vote_average}/10</Text>
             </View>
           </View>
         </View>
