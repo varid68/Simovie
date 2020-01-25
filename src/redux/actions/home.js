@@ -97,3 +97,15 @@ export function getReviewMovie(value) {
     }
   }
 }
+
+// 
+export function getRelatedMovie(value) {
+  return async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/movie/${value}/similar?api_key=${TMDB_API_KEY}&language=en-US`, { headers: null })
+      return res.data
+    } catch (err) {
+      if (err.response) return err.response.data
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native'
 import {
   SCREEN_WIDTH, YELLOW, DEEPBLACK, WHITE, TEXT_SMALL, GRAY,
-  GRAY_DARK, GRAY_ALT, ALIGNING_ITEM_CENTER, TEXT_BASE_BOLD
+  GRAY_DARK, GRAY_ALT, ALIGNING_ITEM_CENTER, TEXT_BASE_BOLD,
+  OXFORD_BLUE
 } from '../../../configs/styles'
 
 export default StyleSheet.create({
@@ -142,5 +143,26 @@ export default StyleSheet.create({
     ...TEXT_BASE_BOLD,
     textAlign: 'center',
     color: WHITE
+  },
+
+
+  // RELATED
+  relatedWrap: {
+    padding: 15,
+    flexDirection: 'row',
+    backgroundColor: OXFORD_BLUE
+  },
+  relatedImg: {
+    width: 0.29 * SCREEN_WIDTH,
+    height: 0.41 * SCREEN_WIDTH,
+    resizeMode: 'contain',
+    borderRadius: 3
+  },
+  relatedTitle: {
+    ...TEXT_SMALL,
+    color: WHITE,
+    height: 35,
+    marginTop: 10,
+    marginHorizontal: 5
   }
 })

@@ -9,8 +9,8 @@ import * as actions from '../../../redux/actions/home'
 import { TMDB_IMG_URL } from '../../../configs/apiConfig'
 import Spinner from '../../presesentationals/Spinner'
 import {
-  ITEMS_CENTER, TEXT_SMALL_RED, OPACITY_3, WHITE,
-  LIST_ITEM_BASE, RED, DEEP, TEXT_BASE, YELLOW
+  ITEMS_CENTER, OPACITY_3, WHITE, LIST_ITEM_BASE, RED,
+  DEEP, TEXT_BASE, YELLOW
 } from '../../../configs/styles'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
@@ -28,11 +28,16 @@ export default function index(props) {
   const [liked, setLiked] = useState(false)
   const [link, setLink] = useState('')
   const [review, setReview] = useState([])
+  const [related, setRelated] = useState([])
+  const [idMovie, setIdMovie] = useState(() => {
+    return props.navigation.state.params.id
+  })
 
 
   useEffect(() => {
-    const { id } = props.navigation.state.params
-    dispatch(actions.getDetailMovie(id)).then(res => {
+    setLoading(true)
+
+    dispatch(actions.getDetailMovie(idMovie)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
         setDetail(res)
         setLoading(false)
@@ -41,7 +46,7 @@ export default function index(props) {
       }
     })
 
-    dispatch(actions.getCastMovie(id)).then(res => {
+    dispatch(actions.getCastMovie(idMovie)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
         setCast(res.cast)
       } else {
@@ -49,7 +54,7 @@ export default function index(props) {
       }
     })
 
-    dispatch(actions.getVideoLink(id)).then(res => {
+    dispatch(actions.getVideoLink(idMovie)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
         setLink(res.results[0].key)
       } else {
@@ -57,14 +62,25 @@ export default function index(props) {
       }
     })
 
-    dispatch(actions.getReviewMovie(id)).then(res => {
+    dispatch(actions.getReviewMovie(idMovie)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
         setReview(res.results)
       } else {
         showToast(res.status_message)
       }
     })
-  }, [])
+
+    dispatch(actions.getRelatedMovie(idMovie)).then(res => {
+      if (!res.hasOwnProperty('status_code')) {
+        const result = res.results.length > 3 ? res.results.slice(0, 3) : res.results
+        setRelated(result)
+      } else {
+        showToast(res.status_message)
+      }
+    })
+  }, [idMovie])
+
+  const refetchAll = (id) => setIdMovie(id)
 
   const toggleLiked = () => setLiked(!liked)
 
@@ -81,9 +97,9 @@ export default function index(props) {
         translucent />
       {
         loading ?
-          <View style={{ flex: 1, ...ITEMS_CENTER }}>
+          <View style={{ backgroundColor: DEEP, flex: 1, ...ITEMS_CENTER }}>
             <Spinner size="large" />
-            <Text style={TEXT_SMALL_RED}>Loading</Text>
+            <Text style={{ color: WHITE }}>Please wait..</Text>
           </View>
           :
           <Fragment>
@@ -123,7 +139,7 @@ export default function index(props) {
                   <TouchableOpacity
                     onPress={openYoutube}
                     style={styles.watchNow}>
-                    <Text style={styles.watchNowText}>WATCH NOW</Text>
+                    <Text style={styles.watchNowText}>WATCH TRAILER</Text>
                   </TouchableOpacity>
                   <View style={{ flexDirection: 'row' }}>
                     {[1, 2, 3, 4, 5].map(item => (
@@ -169,7 +185,7 @@ export default function index(props) {
                   activeTextStyle={{ color: YELLOW }}
                   tabStyle={{ backgroundColor: DEEP }}
                   heading="Related">
-                  <Related />
+                  <Related related={related} refetchAll={refetchAll} />
                 </Tab>
                 <Tab
                   textStyle={{ color: WHITE, ...TEXT_BASE }}
