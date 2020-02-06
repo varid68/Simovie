@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 import HomeContextContainer, { HomeContext } from './HomeContext'
 import Header from './Header'
 import SliderMovie from './SliderMovie'

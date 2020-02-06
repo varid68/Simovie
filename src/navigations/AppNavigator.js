@@ -8,14 +8,16 @@ import SplashPage from '../components/SplashScreen'
 import HomePage from '../components/containers/Home'
 import DetailPage from '../components/containers/Detail'
 import SearchPage from '../components/containers/Search'
+import CatalogPage from '../components/containers/Catalog'
 
 const AppNavigator = createStackNavigator({
   SplashScreen: { screen: SplashPage },
   HomeScreen: { screen: HomePage },
   DetailScreen: { screen: DetailPage },
-  SearchScreen: { screen: SearchPage }
+  SearchScreen: { screen: SearchPage },
+  CatalogScreen: { screen: CatalogPage }
 }, {
-  initialRouteName: 'SplashScreen',
+  initialRouteName: 'CatalogScreen',
   defaultNavigationOptions: {
     headerTintColor: WHITE,
     headerStyle: {
