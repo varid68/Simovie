@@ -1,17 +1,20 @@
 import React from 'react'
-import { View } from 'react-native'
-import CatalogContextContainer, { CatalogContext } from './CatalogContext'
+import { ScrollView } from 'react-native'
+import CatalogContextContainer from './CatalogContext'
 import Header from './Header'
+import Carousel from './Carousel'
+import CardList from './CardList'
 import { EBONY } from '../../../configs/styles'
 
 
-function index(params) {
+function index({ navigation }) {
   return (
-    <CatalogContextContainer>
-      <Header />
-      <View style={{ backgroundColor: EBONY, flex: 1 }}>
-
-      </View>
+    <CatalogContextContainer navigation={navigation}>
+      <Header navigation={navigation} />
+      <ScrollView style={{ backgroundColor: EBONY, flex: 1 }}>
+        <Carousel />
+        <CardList />
+      </ScrollView>
     </CatalogContextContainer>
   )
 }

@@ -44,7 +44,7 @@ export default function SliderMovie(props) {
     <View style={{ marginVertical: 10, paddingTop: 15 }}>
       <View style={styles.sliderTitle}>
         <Text style={{ ...TEXT_SMALL, color: WHITE }}>{props.title}</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={value.openAllMovie.bind(null, props.category, props.title)}>
           <Text style={{ ...TEXT_SMALL, color: GRAY }}>See all</Text>
         </TouchableOpacity>
       </View>
@@ -56,7 +56,7 @@ export default function SliderMovie(props) {
             data={props.list}
             keyExtractor={keyExtractor}
             renderItem={({ item }) => renderItem(item)}
-            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             horizontal />
       }
     </View>

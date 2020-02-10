@@ -13,9 +13,18 @@ function index() {
         {
           value => (
             <ScrollView style={styles.container}>
-              <SliderMovie list={value.popular} title='RECOMMENDED FOR YOU' />
-              <SliderMovie list={value.nowPlaying} title='NOW PLAYING' />
-              <SliderMovie list={value.topRated} title='TOP RATED' />
+              <SliderMovie
+                category='popular'
+                list={value.popular}
+                title='RECOMMENDED FOR YOU' />
+              <SliderMovie
+                category='now_playing'
+                list={value.nowPlaying}
+                title='NOW PLAYING' />
+              <SliderMovie
+                category='top_rated'
+                list={value.topRated}
+                title='TOP RATED' />
             </ScrollView>
           )
         }

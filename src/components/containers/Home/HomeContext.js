@@ -9,12 +9,6 @@ export const HomeContext = createContext()
 export default function HomeContextPage(props) {
   const dispatch = useDispatch()
 
-  /* const [movies, setMovies] = useState({
-   popular: [],
-   topRated: [],
-   nowPlaying: []
- }) */
-
   const [popular, setPopular] = useState([])
   const [topRated, setTopRated] = useState([])
   const [nowPlaying, setNowPlaying] = useState([])
@@ -22,25 +16,25 @@ export default function HomeContextPage(props) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(actions.getPopularMovies()).then(res => {
+    dispatch(actions.getMovieByCategory('popular')).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        setPopular(res.results)
+        setPopular(res.results.filter((e, i) => i < 5))
       } else {
         showToast(res.status_message)
       }
     })
 
-    dispatch(actions.getTopRatedMovies()).then(res => {
+    dispatch(actions.getMovieByCategory('top_rated')).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        setTopRated(res.results)
+        setTopRated(res.results.filter((e, i) => i < 5))
       } else {
         showToast(res.status_message)
       }
     })
 
-    dispatch(actions.getNowPlayingMovies()).then(res => {
+    dispatch(actions.getMovieByCategory('now_playing')).then(res => {
       if (!res.hasOwnProperty('status_code')) {
-        setNowPlaying(res.results)
+        setNowPlaying(res.results.filter((e, i) => i < 5))
       } else {
         showToast(res.status_message)
       }
@@ -64,6 +58,8 @@ export default function HomeContextPage(props) {
     NavigationService.navigate('SearchScreen', { movie: search })
   }
 
+  const openAllMovie = (category, title) => NavigationService.navigate('CatalogScreen', { category, title })
+
 
   return (
     <HomeContext.Provider value={{
@@ -73,7 +69,8 @@ export default function HomeContextPage(props) {
       search,
       setValueSearch,
       onSearch,
-      loading
+      loading,
+      openAllMovie
     }}>
       {props.children}
     </HomeContext.Provider>

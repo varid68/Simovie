@@ -17,7 +17,7 @@ const AppNavigator = createStackNavigator({
   SearchScreen: { screen: SearchPage },
   CatalogScreen: { screen: CatalogPage }
 }, {
-  initialRouteName: 'CatalogScreen',
+  initialRouteName: 'SplashScreen',
   defaultNavigationOptions: {
     headerTintColor: WHITE,
     headerStyle: {
