@@ -77,6 +77,7 @@ export default function index(props) {
       } else {
         showToast(res.status_message)
       }
+
     })
   }, [idMovie])
 
@@ -177,7 +178,7 @@ export default function index(props) {
                   activeTextStyle={{ color: YELLOW }}
                   tabStyle={{ backgroundColor: DEEP }}
                   heading="Detail">
-                  <DescriptionMovie cast={cast} detail={detail} />
+                  <DescriptionMovie detail={detail} />
                 </Tab>
                 <Tab
                   textStyle={{ color: WHITE, ...TEXT_BASE }}

@@ -11,6 +11,7 @@ export default function CatalogContextPage(props) {
   const dispatch = useDispatch()
 
   const [catalog, setCatalog] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const { category } = props.navigation.state.params
@@ -18,6 +19,7 @@ export default function CatalogContextPage(props) {
     dispatch(actions.getMovieByCategory(category)).then(res => {
       if (!res.hasOwnProperty('status_code')) {
         setCatalog(res.results)
+        setLoading(false)
       } else {
         showToast(res.status_message)
       }
@@ -26,7 +28,8 @@ export default function CatalogContextPage(props) {
 
   return (
     <CatalogContext.Provider value={{
-      catalog
+      catalog,
+      loading
     }}>
       {props.children}
     </CatalogContext.Provider>
