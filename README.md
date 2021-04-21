@@ -1,18 +1,8 @@
 # simple movie app 
 Discover Movies
 
-<table>
-  <thead>
-    <th>Home</th>
-    <th>Detail</th>
-    <th>Search list</th>
-  </thead>
-  <tbody>
-    <td><img src='./home.png' /></td>
-    <td><img src='./detail.png' /></td>
-    <td><img src='./search.png' /></td>
-  </tbody>
-</table>
+### Preview Apps
+<img src="full.gif" alt="image" />
 
 ### Requirements
 - [Node](https://nodejs.org/) >= 10.15.3
@@ -38,3 +28,7 @@ TMDB_API_KEY=your_tmdb_api_key_here
 Get api key - [TMDB](https://www.themoviedb.org/)
 
 Thanks to Mickael Guillaume for his awesome design [link uplabs](https://www.uplabs.com/posts/movies-e0f9c1ea-a644-4666-857b-10933c4089ca) and TMDb for Open API Movie
+
+ ## download apk ?
+<a href="https://drive.google.com/file/d/17-XNCU2CiVURf4cTc8fMVJ-5tr9kB1SF/view?usp=sharing" target="_blank">Downlaod Simovie from Google drive [6Mb]</a>
+
